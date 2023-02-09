@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkreact_homework_template=self.webpackChunkreact_homework_template||[]).push([[8],{8:function(e,t,a){a.r(t);var r=a(184);t.default=function(){return(0,r.jsx)("h3",{children:"Movie Cast Page"})}}}]);
+//# sourceMappingURL=8.4d62e560.chunk.js.map
