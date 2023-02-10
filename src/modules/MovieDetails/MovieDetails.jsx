@@ -1,10 +1,7 @@
 import styles from './movie-details.module.scss';
 
 const MovieDetails = ({item}) => {
-    console.log(item);
-
     const {title, poster_path, vote_average, overview, genres = []} = item;
-    console.log(genres);
     // const genreList = genres.map(genre => genre.name).join(", ");
     const genreList = genres.map(genre => <li key={genre.id}>{genre.name}</li>);
 

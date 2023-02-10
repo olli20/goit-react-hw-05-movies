@@ -16,7 +16,7 @@ const MovieDetailsPage = () => {
     const {movieId} = useParams();
 
     useEffect(() => {
-        const fetchSingleMovie = async() => {
+        const fetchMovieDetails = async() => {
             setState(prevState => ({
                 ...prevState, 
                 loading: true,
@@ -24,7 +24,6 @@ const MovieDetailsPage = () => {
             }));
             try {
                 const data = await getMovieById(movieId);
-                console.log(data);
                 setState(prevState => {
                     return {
                         ...prevState,
@@ -46,10 +45,8 @@ const MovieDetailsPage = () => {
                 });
             }
         }
-        fetchSingleMovie();
+        fetchMovieDetails();
     }, [movieId, setState])
-
-    console.log(state.item);
 
     return(
         <div className="container">

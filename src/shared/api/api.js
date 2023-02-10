@@ -15,11 +15,19 @@ export const getPopularMovies = async() => {
 }
 
 export const getMovieById = async(movie_id) => {
-    const {data} = await instance.get(`/movie/${movie_id}`, {
-        // params: {
-        //     movie_id,
-        // }
-    })
+    const {data} = await instance.get(`/movie/${movie_id}`, {})
 
     return data;
+}
+
+export const getReviews = async(movie_id) => {
+    const {data} = await instance.get(`/movie/${movie_id}/reviews`, {})
+
+    return data.results;
+}
+
+export const getCast = async(movie_id) => {
+    const {data} = await instance.get(`/movie/${movie_id}/credits`, {})
+
+    return data.cast;
 }

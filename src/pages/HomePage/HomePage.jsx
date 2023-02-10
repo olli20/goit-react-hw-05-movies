@@ -28,13 +28,11 @@ const HomePage = () => {
                 });
             }
             catch (error) {
-                console.log(error.message);
                 setState(prevState => ({
                     ...prevState,
                     error,
                 }));
-            }
-            finally {
+            } finally {
                 setState(prevState => {
                     return {
                         ...prevState, 
