@@ -31,3 +31,14 @@ export const getCast = async(movie_id) => {
 
     return data.cast;
 }
+
+export const searchMovies = async(query, page = 1) => {
+    const {data} = await instance.get(`/search/movie`, {
+        params: {
+            query,
+            page,
+        }
+    })
+
+    return data.results;
+}
