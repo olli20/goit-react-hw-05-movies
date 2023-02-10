@@ -13,3 +13,13 @@ export const getPopularMovies = async() => {
 
     return data.results;
 }
+
+export const getMovieById = async(movie_id) => {
+    const {data} = await instance.get(`/movie/${movie_id}`, {
+        // params: {
+        //     movie_id,
+        // }
+    })
+
+    return data;
+}

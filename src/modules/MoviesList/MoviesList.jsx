@@ -9,9 +9,9 @@ const MoviesList = ({items}) => {
     });
 
     return (
-        <ol>
+        <ul>
             {elements}
-        </ol>
+        </ul>
     )
 }
 

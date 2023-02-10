@@ -1,6 +1,6 @@
 const MovieReviewsPage = () => {
     return(
-        <h3>Movie Cast Page</h3>
+        <h3>Movie Reviews Page</h3>
     )
 }
 
