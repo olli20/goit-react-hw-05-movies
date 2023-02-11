@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react';
 
 import MoviesList from '../../modules/MoviesList/MoviesList';
+import Loading from '../../shared/components/Loading/Loading';
 
 import {getPopularMovies} from '../../shared/api/api';
 
@@ -43,11 +44,12 @@ const HomePage = () => {
         fetchMovies();
     }, [setState])
 
-    const {items} = state;
+    const {items, loading} = state;
 
     return(
         <div className="container">
             <h2>Popular Movies</h2>
+            {loading && <Loading />}
             <MoviesList items={items} />
         </div>
     )
