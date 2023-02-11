@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import {Link, Outlet, useParams} from 'react-router-dom';
+import {Link, Outlet, useParams, useNavigate, useLocation} from 'react-router-dom';
 
 import MovieDetails from '../../modules/MovieDetails/MovieDetails';
 
@@ -14,6 +14,10 @@ const MovieDetailsPage = () => {
     });
 
     const {movieId} = useParams();
+
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from || "/goit-react-hw-05-movies";
 
     useEffect(() => {
         const fetchMovieDetails = async() => {
@@ -48,19 +52,22 @@ const MovieDetailsPage = () => {
         fetchMovieDetails();
     }, [movieId, setState])
 
+    const goBack = () => navigate(from);
+
     return(
         <div className="container">
+            <button onClick={goBack}>Go back</button>
             <MovieDetails item={state.item} />
             <hr />
             <p>Additional information</p>
             <ul>
                 <li>
-                    <Link to={`/goit-react-hw-05-movies/movies/${movieId}/cast`}>Cast</Link>
+                    <Link state={{from}} to={`/goit-react-hw-05-movies/movies/${movieId}/cast`}>Cast</Link>
                 </li>
             </ul>
             <ul>
                 <li>
-                    <Link to={`/goit-react-hw-05-movies/movies/${movieId}/reviews`}>Reviews</Link>
+                    <Link state={{from}} to={`/goit-react-hw-05-movies/movies/${movieId}/reviews`}>Reviews</Link>
                 </li>
             </ul>
             <Outlet />

@@ -1,10 +1,11 @@
-import {Link} from 'react-router-dom';
+import {Link, useLocation} from 'react-router-dom';
 import {PropTypes} from 'prop-types';
 
 const MoviesList = ({items}) => {
+    const location = useLocation();
     const elements = items.map(({id, title}) => {
         return (<li key={id}>
-                    <Link to={`/goit-react-hw-05-movies/movies/${id}`}>{title}</Link>
+                    <Link state={{from: location}} to={`/goit-react-hw-05-movies/movies/${id}`}>{title}</Link>
                 </li>);
     });
 
