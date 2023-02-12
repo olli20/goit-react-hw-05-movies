@@ -3,7 +3,7 @@ import styles from './movie-details.module.scss';
 const MovieDetails = ({item}) => {
     const {title, poster_path, vote_average, overview, genres = []} = item;
     // const genreList = genres.map(genre => genre.name).join(", ");
-    const genreList = genres.map(genre => <li key={genre.id}>{genre.name}</li>);
+    const genreList = genres.map(genre => <li key={genre.id} className={styles.genre}>{genre.name}</li>);
 
     return (
         <div className={styles.wrapper}>
@@ -16,7 +16,9 @@ const MovieDetails = ({item}) => {
                 <h3>Overview</h3>
                 <p>{overview}</p>
                 <h3>Genres</h3>
-                {genres && <p>{genreList}</p>}
+                {genres && <ul className={styles.genreList}>
+                                {genreList}
+                            </ul>}
             </div>
         </div>
     )

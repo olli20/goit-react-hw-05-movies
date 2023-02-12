@@ -5,3 +5,20 @@
 .poster {
     margin-right: 20px;
 }
+
+.genreList {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+}
+
+.genre {
+    display: block;
+    padding: 2px 10px 6px 10px;
+    background-color: rgb(241, 241, 241);
+    border-radius: 4px;
+
+    &:not(:last-child) {
+        margin-right: 10px;
+    }
+}

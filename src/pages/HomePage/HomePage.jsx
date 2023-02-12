@@ -3,14 +3,16 @@ import {useState, useEffect} from 'react';
 import OptionsForm from '../../modules/OptionsForm/OptionsForm';
 import MoviesList from '../../modules/MoviesList/MoviesList';
 import Loading from '../../shared/components/Loading/Loading';
+import Button from '../../shared/components/Button/Button';
 
-import {getPopularMovies} from '../../shared/api/api';
+import {getTrendingMovies} from '../../shared/api/api';
 
 // import styles from './home-page.module.scss';
 
 const HomePage = () => {
     const [state, setState] = useState({
         items: [],
+        page: 1,
         loading: false,
         error: null,
     })
@@ -25,7 +27,7 @@ const HomePage = () => {
                 error: null,
             }));
             try {
-                const data = await getPopularMovies(option);
+                const data = await getTrendingMovies(option, state.page);
                 setState(prevState => ({
                     ...prevState,
                     items: [...prevState.items, ...data]
@@ -44,7 +46,7 @@ const HomePage = () => {
             }
         }
         fetchMovies();
-    }, [setState, option]);
+    }, [setState, option, state.page]);
 
     const handleOptionChange = (target) => {
         setState(prevState => ({
@@ -53,15 +55,24 @@ const HomePage = () => {
         }));
         setOption(target.value);
     }
+    const handleShowMore = () => {
+        setState(prevState => ({
+            ...prevState,
+            page: prevState.page + 1,
+        }));
+    }
 
-    const {items, loading} = state;
+    const {items, loading, error} = state;
+    const isItems = items.length > 0;
 
     return(
         <div className="container">
             <h2>Trending Movies</h2>
             <OptionsForm onChange={handleOptionChange} option={option} />
+            {isItems && <MoviesList items={items} onChange={handleOptionChange} />}
             {loading && <Loading />}
-            <MoviesList items={items} onChange={handleOptionChange} />
+            {error && <p>Some error occured</p>}
+            {isItems && <Button onClick={handleShowMore}>Show more</Button>}
         </div>
     )
 }

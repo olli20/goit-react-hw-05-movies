@@ -6,6 +6,7 @@ import {searchMovies} from '../../shared/api/api';
 import MoviesSearchForm from '../../modules/MoviesSearchForm/MoviesSearchForm';
 import MoviesList from '../../modules/MoviesList/MoviesList';
 import Loading from '../../shared/components/Loading/Loading';
+import Button from '../../shared/components/Button/Button';
 
 const MoviesSearchPage = () => {
     const [state, setState] = useState({
@@ -51,6 +52,12 @@ const MoviesSearchPage = () => {
 
     const onSubmit = (search) => {
         setSearchParams({search});
+        setState(prevState =>({
+            ...prevState,
+            items: [],
+            page: 1,
+            error: null,
+        }));
     }
 
     const handleShowMore = () => {
@@ -69,7 +76,7 @@ const MoviesSearchPage = () => {
             <MoviesSearchForm onSubmit={onSubmit} />
             {isItems && <MoviesList items={items} />}
             {loading && <Loading />}
-            {isItems && <button onClick={handleShowMore}>Show more</button>}
+            {isItems && <Button onClick={handleShowMore}>Show more</Button>}
         </div>
     )   
 }

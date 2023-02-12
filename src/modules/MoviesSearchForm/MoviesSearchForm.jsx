@@ -1,9 +1,12 @@
 import {useState} from 'react';
 
+import Button from '../../shared/components/Button/Button';
+
+import styles from './movies-search-form.module.scss';
+
 const MoviesSearchForm = ({onSubmit}) => {
     const [state, setState] = useState("");
  
-
     const handleChange = ({target}) => {
         setState(target.value);
     }
@@ -21,10 +24,11 @@ const MoviesSearchForm = ({onSubmit}) => {
                 name="query"
                 value={state}
                 onChange={handleChange}
-                placeholder="Movie search"
+                placeholder="Movies search"
                 required
+                className={styles.input}
             />
-            <button type="submit">Search</button>
+            <Button type="submit">Search</Button>
         </form>
     )
 }
