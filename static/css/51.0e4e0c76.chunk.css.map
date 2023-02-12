@@ -1,1 +1,0 @@
-{"version":3,"file":"static/css/51.0e4e0c76.chunk.css","mappings":"AAAA,8BACI,aAGJ,6BACI","sources":["modules/MovieDetails/movie-details.module.scss"],"sourcesContent":[".wrapper {\n    display: flex;\n}\n\n.poster {\n    margin-right: 20px;\n}"],"names":[],"sourceRoot":""}
