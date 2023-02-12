@@ -17,10 +17,13 @@ const Navbar = () => {
     ));
 
     return (
-        <div className={styles.wrapper}> 
-            <ul className={styles.menu}>
-                {menuElements}
-            </ul>
+        <div className={styles.navbar}>
+            <nav className={styles.navbarContainer}>
+                <p className={styles.logo}>MOVIES</p> 
+                <ul className={styles.menu}>
+                    {menuElements}
+                </ul>
+            </nav>
         </div>
     )
 }

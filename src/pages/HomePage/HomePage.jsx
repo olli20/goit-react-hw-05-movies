@@ -67,7 +67,7 @@ const HomePage = () => {
 
     return(
         <div className="container">
-            <h2>Trending Movies</h2>
+            <h1 className="title">Trending Movies</h1>
             <OptionsForm onChange={handleOptionChange} option={option} />
             {isItems && <MoviesList items={items} onChange={handleOptionChange} />}
             {loading && <Loading />}

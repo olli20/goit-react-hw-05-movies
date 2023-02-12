@@ -1,12 +1,13 @@
 import {useState, useEffect} from 'react';
 import {useSearchParams} from 'react-router-dom';
 
-import {searchMovies} from '../../shared/api/api';
-
 import MoviesSearchForm from '../../modules/MoviesSearchForm/MoviesSearchForm';
 import MoviesList from '../../modules/MoviesList/MoviesList';
 import Loading from '../../shared/components/Loading/Loading';
 import Button from '../../shared/components/Button/Button';
+
+import {searchMovies} from '../../shared/api/api';
+// import styles from './movies-search-page.scss';
 
 const MoviesSearchPage = () => {
     const [state, setState] = useState({
@@ -15,9 +16,7 @@ const MoviesSearchPage = () => {
         loading: false,
         error: null,
     });
-
     const [searchParams, setSearchParams] = useSearchParams();
-
     const search = searchParams.get("search");
 
     useEffect(() => {
@@ -69,10 +68,9 @@ const MoviesSearchPage = () => {
 
     const {items, loading} = state;
     const isItems = items.length > 0;
-
     return(
         <div className="container">
-            <h2>Movies Search Page</h2>
+            <h1 className="title">Movies Search Page</h1>
             <MoviesSearchForm onSubmit={onSubmit} />
             {isItems && <MoviesList items={items} />}
             {loading && <Loading />}
