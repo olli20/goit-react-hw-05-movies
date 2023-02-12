@@ -1,11 +1,11 @@
 import {useState, useEffect} from 'react';
 import {useSearchParams} from 'react-router-dom';
 
-
 import {searchMovies} from '../../shared/api/api';
 
 import MoviesSearchForm from '../../modules/MoviesSearchForm/MoviesSearchForm';
 import MoviesList from '../../modules/MoviesList/MoviesList';
+import Loading from '../../shared/components/Loading/Loading';
 
 const MoviesSearchPage = () => {
     const [state, setState] = useState({
@@ -26,10 +26,10 @@ const MoviesSearchPage = () => {
                     ...prevState,
                     loading: true,
                 }));
-                const data = await searchMovies(search);
+                const data = await searchMovies(search, state.page);
                 setState(prevState =>({
                     ...prevState,
-                    items: data,
+                    items: [...prevState.items, ...data],
                 }));
             } catch (error) {
                 setState(prevState =>({
@@ -47,25 +47,29 @@ const MoviesSearchPage = () => {
             fetchMovies();
         }
             
-        }, [search])
+        }, [search, state.page])
 
     const onSubmit = (search) => {
         setSearchParams({search});
-        // setState(prevState => {
-        //     return {
-        //         ...prevState,
-        //         search,
-        //     }
-        // });
     }
 
-    const {items} = state;
+    const handleShowMore = () => {
+        setState(prevState =>({
+            ...prevState,
+            page: prevState.page + 1,
+        }));
+    }
+
+    const {items, loading} = state;
+    const isItems = items.length > 0;
 
     return(
         <div className="container">
             <h2>Movies Search Page</h2>
             <MoviesSearchForm onSubmit={onSubmit} />
-            <MoviesList items={items} />
+            {isItems && <MoviesList items={items} />}
+            {loading && <Loading />}
+            {isItems && <button onClick={handleShowMore}>Show more</button>}
         </div>
     )   
 }

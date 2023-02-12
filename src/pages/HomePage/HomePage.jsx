@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react';
 
+import OptionsForm from '../../modules/OptionsForm/OptionsForm';
 import MoviesList from '../../modules/MoviesList/MoviesList';
 import Loading from '../../shared/components/Loading/Loading';
 
@@ -19,18 +20,16 @@ const HomePage = () => {
     useEffect(() => {
         const fetchMovies = async() => {
             setState(prevState => ({
-                items: [], 
+                ...prevState, 
                 loading: true,
                 error: null,
             }));
             try {
                 const data = await getPopularMovies(option);
-                setState(prevState => {
-                    return {
-                        ...prevState,
-                        items: [...data]
-                    }
-                });
+                setState(prevState => ({
+                    ...prevState,
+                    items: [...prevState.items, ...data]
+                }));
             }
             catch (error) {
                 setState(prevState => ({
@@ -38,17 +37,20 @@ const HomePage = () => {
                     error,
                 }));
             } finally {
-                setState(prevState => {
-                    return {
-                        ...prevState, 
-                        loading: false }
-                });
+                setState(prevState => ({
+                    ...prevState, 
+                    loading: false 
+                }));
             }
         }
         fetchMovies();
     }, [setState, option]);
 
-    const handleOptionChange = ({target}) => {
+    const handleOptionChange = (target) => {
+        setState(prevState => ({
+            ...prevState,
+            items: []
+        }));
         setOption(target.value);
     }
 
@@ -57,30 +59,9 @@ const HomePage = () => {
     return(
         <div className="container">
             <h2>Trending Movies</h2>
-
-            {/* options */}
-            <form>
-                <label className={styles.option}>
-                    <input 
-                        type="radio" 
-                        name="option" 
-                        value="day" 
-                        onChange={handleOptionChange}
-                        checked={option === "day"}
-                    /> Day
-                </label>
-                <label className={styles.option}>
-                    <input 
-                        type="radio" 
-                        name="option" 
-                        value="week" 
-                        onChange={handleOptionChange}
-                        checked={option === "week"}
-                    /> Week
-                </label>
-            </form>
+            <OptionsForm onChange={handleOptionChange} option={option} />
             {loading && <Loading />}
-            <MoviesList items={items} />
+            <MoviesList items={items} onChange={handleOptionChange} />
         </div>
     )
 }

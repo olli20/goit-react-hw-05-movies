@@ -7,8 +7,11 @@ const instance = axios.create({
     }
 });
 
-export const getPopularMovies = async(period) => {
+export const getPopularMovies = async(period, page = 1) => {
     const {data} = await instance.get(`/trending/movie/${period}`, {
+        params: {
+            page,
+        }
     })
 
     return data.results;
@@ -16,19 +19,16 @@ export const getPopularMovies = async(period) => {
 
 export const getMovieById = async(movie_id) => {
     const {data} = await instance.get(`/movie/${movie_id}`, {})
-
     return data;
 }
 
 export const getReviews = async(movie_id) => {
     const {data} = await instance.get(`/movie/${movie_id}/reviews`, {})
-
     return data.results;
 }
 
 export const getCast = async(movie_id) => {
     const {data} = await instance.get(`/movie/${movie_id}/credits`, {})
-
     return data.cast;
 }
 
