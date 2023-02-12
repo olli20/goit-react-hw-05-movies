@@ -1,5 +1,3 @@
-import {useState} from 'react';
-
 import styles from './options-form.module.scss';
 
 const OptionsForm = ({onChange, option}) => {

@@ -6,7 +6,7 @@ import Loading from '../../shared/components/Loading/Loading';
 
 import {getPopularMovies} from '../../shared/api/api';
 
-import styles from './home-page.module.scss';
+// import styles from './home-page.module.scss';
 
 const HomePage = () => {
     const [state, setState] = useState({

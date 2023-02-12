@@ -47,7 +47,7 @@ const MoviesSearchPage = () => {
             fetchMovies();
         }
             
-        }, [search, state.page])
+        }, [search, state.page, setState])
 
     const onSubmit = (search) => {
         setSearchParams({search});
