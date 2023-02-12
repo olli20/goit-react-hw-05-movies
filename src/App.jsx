@@ -1,11 +1,11 @@
-import Menu from "./modules/Menu/Menu";
+import Navbar from "./modules/Navbar/Navbar";
 import UserRoutes from './UserRoutes';
 
 const App = () => {
 
   return (
     <div>
-      <Menu />
+      <Navbar />
       <UserRoutes />
     </div>
   );

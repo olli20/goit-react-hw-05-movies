@@ -7,8 +7,8 @@ const instance = axios.create({
     }
 });
 
-export const getPopularMovies = async() => {
-    const {data} = await instance.get("/trending/movie/week", {
+export const getPopularMovies = async(period) => {
+    const {data} = await instance.get(`/trending/movie/${period}`, {
     })
 
     return data.results;
