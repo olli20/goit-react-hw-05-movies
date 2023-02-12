@@ -5,27 +5,30 @@ import Loading from '../../shared/components/Loading/Loading';
 
 import {getPopularMovies} from '../../shared/api/api';
 
+import styles from './home-page.module.scss';
+
 const HomePage = () => {
     const [state, setState] = useState({
-        period: "day",
         items: [],
         loading: false,
         error: null,
     })
 
+    const [option, setOption] = useState("day");
+
     useEffect(() => {
         const fetchMovies = async() => {
             setState(prevState => ({
-                ...prevState, 
+                items: [], 
                 loading: true,
                 error: null,
             }));
             try {
-                const data = await getPopularMovies(state.period);
+                const data = await getPopularMovies(option);
                 setState(prevState => {
                     return {
                         ...prevState,
-                        items: [...prevState.items, ...data]
+                        items: [...data]
                     }
                 });
             }
@@ -43,7 +46,11 @@ const HomePage = () => {
             }
         }
         fetchMovies();
-    }, [setState, state.period])
+    }, [setState, option]);
+
+    const handleOptionChange = ({target}) => {
+        setOption(target.value);
+    }
 
     const {items, loading} = state;
 
@@ -53,13 +60,23 @@ const HomePage = () => {
 
             {/* options */}
             <form>
-                <label htmlFor="">
-                    <input type="radio" name="day" />
-                    Day
+                <label className={styles.option}>
+                    <input 
+                        type="radio" 
+                        name="option" 
+                        value="day" 
+                        onChange={handleOptionChange}
+                        checked={option === "day"}
+                    /> Day
                 </label>
-                <label htmlFor="">
-                    <input type="radio" name="week" />
-                    Week
+                <label className={styles.option}>
+                    <input 
+                        type="radio" 
+                        name="option" 
+                        value="week" 
+                        onChange={handleOptionChange}
+                        checked={option === "week"}
+                    /> Week
                 </label>
             </form>
             {loading && <Loading />}

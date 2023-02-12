@@ -1,0 +1,5 @@
+.option {
+    &:not(:last-child) {
+        margin-right: 10px;
+    }
+}
