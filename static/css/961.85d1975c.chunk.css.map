@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/961.85d1975c.chunk.css","mappings":"AACI,0CACI","sources":["pages/HomePage/home-page.module.scss"],"sourcesContent":[".option {\n    &:not(:last-child) {\n        margin-right: 10px;\n    }\n}"],"names":[],"sourceRoot":""}
