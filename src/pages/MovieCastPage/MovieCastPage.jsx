@@ -3,6 +3,9 @@ import {useParams} from 'react-router-dom';
 
 import {getCast} from '../../shared/api/api';
 
+import Loading from '../../shared/components/Loading/Loading';
+import CastList from '../../modules/CastList/CastList';
+
 const MovieCastPage = () => {
     const [state, setState] = useState({
         items: [],
@@ -43,24 +46,13 @@ const MovieCastPage = () => {
         fetchCast();
     }, [movieId, setState]) 
 
-    const {items} = state;
-
-    const elements = items.map(({id, name, character, profile_path}) => {
-        return (
-            <li key={id}>
-                <p>{name}</p>
-                <div><img src={`https://image.tmdb.org/t/p/w500${profile_path}`} width="200" alt={name} /></div>
-                <p>Character: {character}</p>
-            </li>
-        )
-    })
+    const {items, loading, error} = state;
 
     return(
         <div>
-            <h3>Movie Cast</h3>
-            <ul>
-                {elements}
-            </ul>
+            {loading && <Loading />}
+            {error && <p>Error</p>}
+            {items.length > 0 && <CastList items={items} />}
         </div>
     )
 }

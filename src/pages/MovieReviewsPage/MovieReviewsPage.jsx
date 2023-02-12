@@ -3,6 +3,8 @@ import {useParams} from 'react-router-dom';
 
 import {getReviews} from '../../shared/api/api';
 
+import Loading from '../../shared/components/Loading/Loading';
+
 const MovieReviewsPage = () => {
     const [state, setState] = useState({
         items: [],
@@ -43,7 +45,7 @@ const MovieReviewsPage = () => {
         fetchReviews();
     }, [movieId, setState]) 
 
-    const {items} = state;
+    const {items, loading, error} = state;
 
     const elements = items.map((item) => {
         return (<li key={item.id}>
@@ -55,8 +57,10 @@ const MovieReviewsPage = () => {
 
     return (
         <div>
-            <h3>Reviews</h3>
-            <ol>{elements}</ol>
+            {loading && <Loading />}
+            {error && <p>Error</p>}
+            {items.length > 0 && <ul>{elements}</ul>}
+            {!loading && items.length === 0 && <p>We don't have any reviews for this movie.</p>}
         </div>
     )
 }
