@@ -1,8 +1,10 @@
 import {useState, useEffect} from 'react';
-import {Link, Outlet, useParams, useNavigate, useLocation} from 'react-router-dom';
+import {NavLink, Outlet, useParams, useNavigate, useLocation} from 'react-router-dom';
 
 import MovieDetails from '../../modules/MovieDetails/MovieDetails';
 import Loading from '../../shared/components/Loading/Loading';
+
+import styles from './movie-details-page.module.scss';
 
 import {getMovieById} from '../../shared/api/api';
 
@@ -56,6 +58,10 @@ const MovieDetailsPage = () => {
 
     const {loading, error} = state;
 
+    const getClassList = ({isActive}) => {
+        return isActive ? `${styles.link} ${styles.active}` : styles.link;
+    }
+
     return (
         <div className="container">
             <button onClick={goBack}>Go back</button>
@@ -66,9 +72,13 @@ const MovieDetailsPage = () => {
             <MovieDetails item={state.item} />
             <hr />
             <p>Additional information</p>
-            <ul>
-                <li><Link state={{from}} to={`/goit-react-hw-05-movies/movies/${movieId}/cast`}>Cast</Link></li>
-                <li><Link state={{from}} to={`/goit-react-hw-05-movies/movies/${movieId}/reviews`}>Reviews</Link></li>
+            <ul className={styles.list}>
+                <li>
+                    <NavLink className={getClassList} state={{from}} to={`/goit-react-hw-05-movies/movies/${movieId}/cast`}>Cast</NavLink>
+                </li>
+                <li>
+                    <NavLink className={getClassList} state={{from}} to={`/goit-react-hw-05-movies/movies/${movieId}/reviews`}>Reviews</NavLink>
+                </li>
             </ul>
             <Outlet />
         </div>

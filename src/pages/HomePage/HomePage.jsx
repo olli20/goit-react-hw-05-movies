@@ -49,7 +49,7 @@ const HomePage = () => {
 
     return(
         <div className="container">
-            <h2>Popular Movies</h2>
+            <h2>Trending Movies</h2>
 
             {/* options */}
             <form>
