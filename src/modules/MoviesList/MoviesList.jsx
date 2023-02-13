@@ -2,8 +2,7 @@ import {Link, useLocation} from 'react-router-dom';
 import {PropTypes} from 'prop-types';
 
 import MoviesGrid from '../../shared/components/MoviesGrid';
-
-import {countRatingPercentage} from '../../shared/utils/utils';
+import Rating from '../../shared/components/Rating/Rating';
 
 import styles from './movies-list.module.scss';
 
@@ -20,10 +19,7 @@ const MoviesList = ({items}) => {
                                         <img className={styles.image} src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt="{title}" />
                                     </Link>
                                     <div className={styles.meta}>
-                                        <div className={styles.rating}>
-                                            <span className={styles.ratingNumber}>{countRatingPercentage(vote_average)}</span>
-                                            <span className={styles.percentSign}>%</span>
-                                        </div>
+                                        <Rating vote={vote_average} />
                                         <Link state={{from: location}} to={`/goit-react-hw-05-movies/movies/${id}`} className={styles.title}>{title}</Link>
                                         <p className={styles.release}>{release_date}</p>
                                     </div>

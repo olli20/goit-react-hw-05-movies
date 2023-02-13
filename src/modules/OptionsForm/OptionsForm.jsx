@@ -16,7 +16,7 @@ const OptionsForm = ({onChange, option}) => {
                     value="day" 
                     onChange={handleChange}
                     checked={option === "day"}
-                /> Day
+                /> Today
             </label>
             <label className={styles.option}>
                 <input 
@@ -25,7 +25,7 @@ const OptionsForm = ({onChange, option}) => {
                     value="week" 
                     onChange={handleChange}
                     checked={option === "week"}
-                /> Week
+                /> This week
             </label>
         </form>
     )
