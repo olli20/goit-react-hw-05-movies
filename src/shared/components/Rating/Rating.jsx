@@ -4,7 +4,6 @@ import {countRatingPercentage} from '../../utils/utils';
 
 const Rating = ({vote}) => {
     const percentage = countRatingPercentage(vote);
-    // const circleWidth = 40;
     const radius = 9;
     const dashArray = radius * Math.PI * 2;
     const dashOffset = dashArray - (dashArray * percentage) / 100;
@@ -35,7 +34,7 @@ const Rating = ({vote}) => {
                 </svg>
             </div>
             <span className={styles.ratingNumber}>{percentage}</span>
-            <span className={styles.percentSign}>%</span>
+            {percentage > 0 && <span className={styles.percentSign}>%</span>}
         </div>
     )
 }

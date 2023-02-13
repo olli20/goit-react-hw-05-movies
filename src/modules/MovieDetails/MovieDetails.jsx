@@ -5,11 +5,9 @@ import {countRatingPercentage} from '../../shared/utils/utils';
 import styles from './movie-details.module.scss';
 
 const MovieDetails = ({item}) => {
-
-    console.log(item);
     const {title, poster_path, vote_average, overview, genres = []} = item;
     const genreList = genres.map(genre => <li key={genre.id} className={styles.genre}>{genre.name}</li>);
-    console.log(countRatingPercentage(vote_average));
+    const percentage = countRatingPercentage(vote_average);
     return (
         <div className={styles.wrapper}>
             <div className={styles.poster}>
@@ -17,7 +15,7 @@ const MovieDetails = ({item}) => {
             </div>
             <div>
                 <h1 className="title">{title}</h1>
-                <p>User Score: {countRatingPercentage(vote_average)}%</p>
+                <p>User Score: {percentage}%</p>
                 <h3>Overview</h3>
                 <p>{overview}</p>
                 <h3>Genres</h3>
