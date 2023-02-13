@@ -1,12 +1,15 @@
 import styles from './rating.module.scss';
 
-import {countRatingPercentage} from '../../utils/utils';
+import {countRatingPercentage, getDiagramClassList} from '../../utils/utils';
 
 const Rating = ({vote}) => {
     const percentage = countRatingPercentage(vote);
     const radius = 9;
     const dashArray = radius * Math.PI * 2;
     const dashOffset = dashArray - (dashArray * percentage) / 100;
+
+    const classes = getDiagramClassList(percentage);
+
     return (
         <div className={styles.rating}>
             <div className={styles.diagram}>
@@ -24,7 +27,7 @@ const Rating = ({vote}) => {
                     <circle 
                         cx="10" cy="10" r={radius}
                         strokeWidth="1px" 
-                        className={styles.progress}
+                        className={classes}
                         style={{
                             strokeDasharray: dashArray,
                             strokeDashoffset: dashOffset,

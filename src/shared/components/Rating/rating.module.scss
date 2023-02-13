@@ -30,9 +30,21 @@
 
 .progress {
     fill: none;
-    stroke: $color-logo1;
+    stroke: $color-accent-magenta;
     stroke-linecap: round;
     stroke-linejoin: round;
+
+    &.medium {
+        stroke: $color-accent-yellow;
+    }
+
+    &.heigh {
+        stroke: $color-logo1;
+    }
+
+    &.nr {
+        stroke: grey;
+    }
 }
 
 .ratingNumber {
