@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import styles from './cast-list.module.scss';
 
 import defaultImage from '../../shared/images/default-avatar.png';
@@ -21,3 +23,16 @@ const CastList = ({items}) => {
 }
 
 export default CastList;
+
+CastList.defaultProps = {
+    items: [],
+}
+
+CastList.propTypes = {
+    items: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        character: PropTypes.string.isRequired,
+        profile_path: PropTypes.string,
+    })).isRequired,
+}

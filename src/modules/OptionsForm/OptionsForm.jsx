@@ -1,3 +1,5 @@
+import {PropTypes} from 'prop-types';
+
 import styles from './options-form.module.scss';
 
 const OptionsForm = ({onChange, option}) => {
@@ -30,3 +32,8 @@ const OptionsForm = ({onChange, option}) => {
 }
 
 export default OptionsForm;
+
+OptionsForm.propTypes = {
+    onChange: PropTypes.func.isRequired,
+    option: PropTypes.oneOf(["day", "week"]).isRequired,
+}

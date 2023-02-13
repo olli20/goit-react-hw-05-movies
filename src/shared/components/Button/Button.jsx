@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import styles from './button.module.scss';
 
 const Button = ({onClick = null, type = "button", children}) => {
@@ -10,3 +12,9 @@ const Button = ({onClick = null, type = "button", children}) => {
 }
 
 export default Button;
+
+Button.propTypes = {
+    onClick: PropTypes.func,
+    type: PropTypes.oneOf(["button", "submit"]),
+    children: PropTypes.element,
+}

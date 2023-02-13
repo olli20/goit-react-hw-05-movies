@@ -1,10 +1,10 @@
 import {useState, useEffect} from 'react';
 import {useSearchParams} from 'react-router-dom';
 
-import MoviesSearchForm from '../../modules/MoviesSearchForm/MoviesSearchForm';
-import MoviesList from '../../modules/MoviesList/MoviesList';
-import Loading from '../../shared/components/Loading/Loading';
-import Button from '../../shared/components/Button/Button';
+import MoviesSearchForm from '../../modules/MoviesSearchForm';
+import MoviesList from '../../modules/MoviesList';
+import Loading from '../../shared/components/Loading';
+import Button from '../../shared/components/Button';
 
 import {searchMovies} from '../../shared/api/api';
 // import styles from './movies-search-page.scss';

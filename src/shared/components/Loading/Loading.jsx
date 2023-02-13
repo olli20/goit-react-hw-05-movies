@@ -1,6 +1,5 @@
 import { ThreeDots } from  'react-loader-spinner';
 
-
 const Loading = () => {
     return (
         <div>

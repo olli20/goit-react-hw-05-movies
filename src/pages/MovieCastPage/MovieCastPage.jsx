@@ -3,8 +3,10 @@ import {useParams} from 'react-router-dom';
 
 import {getCast} from '../../shared/api/api';
 
-import Loading from '../../shared/components/Loading/Loading';
-import CastList from '../../modules/CastList/CastList';
+import Loading from '../../shared/components/Loading';
+import CastList from '../../modules/CastList';
+
+// import styles from './movie-cast-page.modle.scss';
 
 const MovieCastPage = () => {
     const [state, setState] = useState({

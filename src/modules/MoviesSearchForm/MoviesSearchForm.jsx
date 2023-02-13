@@ -1,6 +1,6 @@
 import {useState} from 'react';
 
-import Button from '../../shared/components/Button/Button';
+import Button from '../../shared/components/Button';
 
 import styles from './movies-search-form.module.scss';
 
@@ -14,11 +14,10 @@ const MoviesSearchForm = ({onSubmit}) => {
     const handleSubmit = event => {
         event.preventDefault();
         onSubmit(state);
-        console.log("Set ", state);
         setState("");
     }
 
-    return(
+    return (
         <form onSubmit={handleSubmit}>
             <input 
                 name="query"

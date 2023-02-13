@@ -1,8 +1,8 @@
 import {useState, useEffect} from 'react';
 import {NavLink, Outlet, useParams, useNavigate, useLocation} from 'react-router-dom';
 
-import MovieDetails from '../../modules/MovieDetails/MovieDetails';
-import Loading from '../../shared/components/Loading/Loading';
+import MovieDetails from '../../modules/MovieDetails';
+import Loading from '../../shared/components/Loading';
 
 import styles from './movie-details-page.module.scss';
 

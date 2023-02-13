@@ -3,7 +3,9 @@ import {useParams} from 'react-router-dom';
 
 import {getReviews} from '../../shared/api/api';
 
-import Loading from '../../shared/components/Loading/Loading';
+import Loading from '../../shared/components/Loading';
+
+// import styles from './movie-reviews-page.module.scss';
 
 const MovieReviewsPage = () => {
     const [state, setState] = useState({

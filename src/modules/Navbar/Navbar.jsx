@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import items from './items';
 
@@ -19,7 +19,7 @@ const Navbar = () => {
     return (
         <div className={styles.navbar}>
             <nav className={styles.navbarContainer}>
-                <p className={styles.logo}>MOVIES</p> 
+                <Link to={"/goit-react-hw-05-movies/"} className={styles.logo}>MOVIES</Link> 
                 <ul className={styles.menu}>
                     {menuElements}
                 </ul>

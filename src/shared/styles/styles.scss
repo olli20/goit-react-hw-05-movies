@@ -28,7 +28,8 @@ img {
 }
 
 .container {
-  width: 1625px;
+  max-width: 1625px;
+  width: 100%;
   padding-left: 50px;
   padding-right: 50px;
   padding-top: 25px;

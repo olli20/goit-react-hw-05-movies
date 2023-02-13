@@ -1,9 +1,9 @@
 import {useState, useEffect} from 'react';
 
-import OptionsForm from '../../modules/OptionsForm/OptionsForm';
-import MoviesList from '../../modules/MoviesList/MoviesList';
-import Loading from '../../shared/components/Loading/Loading';
-import Button from '../../shared/components/Button/Button';
+import OptionsForm from '../../modules/OptionsForm';
+import MoviesList from '../../modules/MoviesList';
+import Loading from '../../shared/components/Loading';
+import Button from '../../shared/components/Button';
 
 import {getTrendingMovies} from '../../shared/api/api';
 
