@@ -4,7 +4,6 @@ import {countRatingPercentage} from '../../utils/utils';
 
 const Rating = ({vote}) => {
     const percentage = countRatingPercentage(vote);
-    console.log(percentage);
     // const circleWidth = 40;
     const radius = 9;
     const dashArray = radius * Math.PI * 2;
