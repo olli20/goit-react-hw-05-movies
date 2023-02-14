@@ -2,6 +2,7 @@
 
 .gird {
     display: flex;
+    align-items: stretch;
     flex-wrap: wrap;
     gap: $grid-gap-small;
     padding: 0;

@@ -17,17 +17,18 @@ const MoviesList = ({items}) => {
                 items.map(({id, title, poster_path, vote_average, release_date = null}) => {
                     const date = formatDate(release_date);
                     const poster = poster_path?.length > 0 ? `https://image.tmdb.org/t/p/w500${poster_path}` : defaultPoster;
+
                     return (<li className={styles.item} key={id}>
-                                <div className={styles.link}>
-                                    <Link className={styles.poster} state={{from: location}} to={`/goit-react-hw-05-movies/movies/${id}`}>
-                                        <img className={styles.image} src={poster} alt="{title}" />
-                                    </Link>
-                                    <div className={styles.meta}>
-                                        <Rating vote={vote_average} />
-                                        <Link state={{from: location}} to={`/goit-react-hw-05-movies/movies/${id}`} className={styles.title}>{title}</Link>
-                                        {date && <p className={styles.release}>{date}</p>}
+                                    <div className={styles.wrapper}>
+                                        <Link className={styles.poster} state={{from: location}} to={`/goit-react-hw-05-movies/movies/${id}`}>
+                                            <img className={styles.image} src={poster} alt="{title}" />
+                                        </Link>
+                                        <div className={styles.meta}>
+                                            <Rating vote={vote_average} />
+                                            <Link state={{from: location}} to={`/goit-react-hw-05-movies/movies/${id}`} className={styles.title}>{title}</Link>
+                                            {date && <p className={styles.release}>{date}</p>}
+                                        </div>
                                     </div>
-                                </div>
                             </li>);
                 })
             }

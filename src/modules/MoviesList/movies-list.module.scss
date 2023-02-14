@@ -26,23 +26,39 @@
     }
 }
 
-.link {
+.wrapper {
     display: flex;
     flex-direction: column;
     height: 100%;
 }
 
 .poster {
+    position: relative;
     width: 100%;
+}
+
+.poster:before {
+    content: "";
+    display: block;
+    padding-top: 150%;
+}
+
+.image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    object-fit: cover;
 }
 
 .meta {
     position: relative;
-    flex-grow: 1;
     border: 1px solid lightgray;
     border-top: none;
     border-radius: 0 0 $radius-medium $radius-medium;
     padding: 25px 12px 15px 12px;
+    background-color: #fff;
+    flex-grow: 1;
 }
 
 .title {
