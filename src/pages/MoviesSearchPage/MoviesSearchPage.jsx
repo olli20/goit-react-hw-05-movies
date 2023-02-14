@@ -46,10 +46,9 @@ const MoviesSearchPage = () => {
         if(search) {
             fetchMovies();
         }
-            
-        }, [search, state.page, setState])
+    }, [search, state.page, setState])
 
-    const onSubmit = (search) => {
+    const onSubmit = search => {
         setSearchParams({search});
         setState(prevState =>({
             ...prevState,
@@ -66,17 +65,16 @@ const MoviesSearchPage = () => {
         }));
     }
 
-    const {items, loading} = state;
+    const {items, loading, error} = state;
     const isItems = items.length > 0;
+
     return(
         <div>
             <MoviesSearchForm onSubmit={onSubmit} />
             {isItems && <MoviesList items={items} />}
             {loading && <Loading />}
-            
+            {error && <p>Some error occured</p>}
             {isItems && <ButtonCentered onClick={handleShowMore}>Show more</ButtonCentered>}
-            
-            
         </div>
     )   
 }
