@@ -3,7 +3,7 @@ import {useState, useEffect} from 'react';
 import OptionsForm from '../../modules/OptionsForm';
 import MoviesList from '../../modules/MoviesList';
 import Loading from '../../shared/components/Loading';
-import Button from '../../shared/components/Button';
+import ButtonCentered from '../../shared/components/ButtonCentered';
 
 import {getTrendingMovies} from '../../shared/api/api';
 
@@ -66,13 +66,12 @@ const HomePage = () => {
     const isItems = items.length > 0;
 
     return(
-        <div className="container">
-            <h1 className="title">Trending Movies</h1>
+        <div>
             <OptionsForm onChange={handleOptionChange} option={option} />
             {isItems && <MoviesList items={items} onChange={handleOptionChange} />}
             {loading && <Loading />}
             {error && <p>Some error occured</p>}
-            {isItems && <Button onClick={handleShowMore}>Show more</Button>}
+            {isItems && <ButtonCentered onClick={handleShowMore}>Show more</ButtonCentered>}
         </div>
     )
 }

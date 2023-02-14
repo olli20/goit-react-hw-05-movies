@@ -1,8 +1,13 @@
+import Container from '../../components/Container';
+
 import styles from './movies-grid.module.scss';
 
 const MoviesGrid = ({children}) => {
     return (
-        <ul className={styles.gird}>{children}</ul>
+        <Container>
+            <div className={styles.gird}>{children}</div>
+        </Container>
+        
     )
 }
 

@@ -1,11 +1,19 @@
+@import '../../styles/variables';
+
 .button {
-    background-color: #fff;
-    padding: 5px 10px;
-    border: 1px solid grey;
-    border-radius: 4px;
+    margin: 0;
+    height: 46px;
+    padding: 5px 25px;
+    border: none;
+    border-radius: 23px;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    background-image: linear-gradient(90deg, $color-high, $color-title-hover);
+    cursor: pointer;
 
     &:hover,
     &:focus {
-        background-color: rgb(231, 231, 231);
+        color: $color-main-text;
     }
 }

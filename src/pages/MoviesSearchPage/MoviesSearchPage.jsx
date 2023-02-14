@@ -4,7 +4,7 @@ import {useSearchParams} from 'react-router-dom';
 import MoviesSearchForm from '../../modules/MoviesSearchForm';
 import MoviesList from '../../modules/MoviesList';
 import Loading from '../../shared/components/Loading';
-import Button from '../../shared/components/Button';
+import ButtonCentered from '../../shared/components/ButtonCentered';
 
 import {searchMovies} from '../../shared/api/api';
 // import styles from './movies-search-page.scss';
@@ -69,12 +69,14 @@ const MoviesSearchPage = () => {
     const {items, loading} = state;
     const isItems = items.length > 0;
     return(
-        <div className="container">
-            <h1 className="title">Movies Search Page</h1>
+        <div>
             <MoviesSearchForm onSubmit={onSubmit} />
             {isItems && <MoviesList items={items} />}
             {loading && <Loading />}
-            {isItems && <Button onClick={handleShowMore}>Show more</Button>}
+            
+            {isItems && <ButtonCentered onClick={handleShowMore}>Show more</ButtonCentered>}
+            
+            
         </div>
     )   
 }

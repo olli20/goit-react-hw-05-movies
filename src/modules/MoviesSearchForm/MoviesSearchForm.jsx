@@ -1,6 +1,7 @@
 import {useState} from 'react';
 
 import Button from '../../shared/components/Button';
+import ContainerFilled from '../../shared/components/ContainerFilled';
 
 import styles from './movies-search-form.module.scss';
 
@@ -18,17 +19,25 @@ const MoviesSearchForm = ({onSubmit}) => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input 
-                name="query"
-                value={state}
-                onChange={handleChange}
-                placeholder="Movies search"
-                required
-                className={styles.input}
-            />
-            <Button type="submit">Search</Button>
-        </form>
+        <ContainerFilled>
+            <div className={styles.formBlock}>
+                <h1 className={styles.title}>Explore.</h1>
+                <p className={styles.description}>Have you done your homework? Than it's time to discover.</p>
+                <form className={styles.form} onSubmit={handleSubmit}>
+                    <input 
+                        name="query"
+                        value={state}
+                        onChange={handleChange}
+                        placeholder="Search for a movie..."
+                        required
+                        className={styles.input}
+                    />
+                    <div className={styles.formButton}>
+                        <Button type="submit">Search</Button>
+                    </div>
+                </form>
+            </div>
+        </ContainerFilled>
     )
 }
 
