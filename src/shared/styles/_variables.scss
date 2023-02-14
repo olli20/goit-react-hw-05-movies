@@ -1,12 +1,25 @@
-$color-accent: #032541;
-$color-darkgreen: #081c22;
+//Logo colors
 $color-logo1: #8fcea2;
 $color-logo2: #02b3e4;
-$color-accent-yellow: #d2d531;
-$color-accent-magenta: #d6235e;
-$color-main-text: black;
 
+//Backgrounds
+$color-bg-primary: #032541; //darkblue
+$color-bg-secondary: #081c22; //darkgreen
+
+//Text
+$color-main-text: black;
+$color-title-hover: #02b3e4;
+
+//Diagram colors
+$color-high: #21d07a;
+$color-middle: #d2d531;
+$color-low: #d6235e;
+
+//Raps, magins, radiuses
 $grid-gap-medium: 30px;
 $grid-gap-small: 20px;
 $radius-medium: 7px;
 $radius-small: 4px;
+$margin-desktop: 50px;
+$margin-tablet: 30px;
+$margin-mobile: 20px;

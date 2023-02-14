@@ -10,7 +10,7 @@
     height: 40px;
     border-radius: 50%;
     color: white;
-    background-color: $color-darkgreen;
+    background-color: $color-bg-secondary;
 }
 
 .diagram {
@@ -24,26 +24,22 @@
 
 .circleBg {
     fill: none;
-    stroke: $color-logo1;
+    stroke: $color-high;
     opacity: 0.2;
 }
 
 .progress {
     fill: none;
-    stroke: $color-accent-magenta;
+    stroke: $color-low;
     stroke-linecap: round;
     stroke-linejoin: round;
 
     &.medium {
-        stroke: $color-accent-yellow;
+        stroke: $color-middle;
     }
 
-    &.heigh {
-        stroke: $color-logo1;
-    }
-
-    &.nr {
-        stroke: grey;
+    &.high {
+        stroke: $color-high;
     }
 }
 
@@ -52,11 +48,11 @@
     padding: 0;
     font-weight: 700;
     font-size: 14px;
-    margin-top: -2px;
+    margin-top: -1px;
 }
 
 .percentSign {
     font-weight: 900;
     font-size: 8px;
-    margin-top: -5px;
+    margin-top: -4px;
 }

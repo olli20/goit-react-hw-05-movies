@@ -1,13 +1,13 @@
 // import PropTypes from 'prop-types';
 
-import {countRatingPercentage} from '../../shared/utils/utils';
+import {getRatingPercentage} from '../../shared/utils/utils';
 
 import styles from './movie-details.module.scss';
 
 const MovieDetails = ({item}) => {
     const {title, poster_path, vote_average, overview, genres = []} = item;
     const genreList = genres.map(genre => <li key={genre.id} className={styles.genre}>{genre.name}</li>);
-    const percentage = countRatingPercentage(vote_average);
+    const percentage = getRatingPercentage(vote_average);
     return (
         <div className={styles.wrapper}>
             <div className={styles.poster}>
