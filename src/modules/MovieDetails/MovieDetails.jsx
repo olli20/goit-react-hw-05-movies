@@ -27,7 +27,7 @@ const MovieDetails = ({item}) => {
     const {title, poster_path, backdrop_path, tagline, vote_average, overview, genres = [], release_date} = item;
 
     const genreList = genres.map(genre => <li key={genre.id} className={styles.genre}>{genre.name}</li>);
-    const percentage = getRatingPercentage(vote_average);
+    // const percentage = getRatingPercentage(vote_average);
     const year = release_date.slice(0, 4);
     const gradColor1 = bgColor.slice(0, bgColor.length - 2) + " 0.9)";
     const gradColor2 = bgColor.slice(0, bgColor.length - 2) + " 0.7)";
