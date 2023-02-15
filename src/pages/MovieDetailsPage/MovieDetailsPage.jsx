@@ -63,7 +63,7 @@ const MovieDetailsPage = () => {
     }
 
     return (
-        <div className="container">
+        <div>
             <button onClick={goBack}>Go back</button>
 
             {loading && <Loading />}
