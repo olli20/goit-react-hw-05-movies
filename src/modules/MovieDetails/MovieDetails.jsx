@@ -4,7 +4,6 @@ import { FastAverageColor } from 'fast-average-color';
 
 import Container from '../../shared/components/Container';
 import Rating from '../../shared/components/Rating';
-import {getRatingPercentage} from '../../shared/utils/utils';
 import styles from './movie-details.module.scss';
 
 const MovieDetails = ({item}) => {
