@@ -10,6 +10,13 @@
     display: flex;
     justify-content: flex-start;
     color: white;
+    border-color: white;
+
+}
+
+.darkThema {
+    color: black;
+    border-color: black;
 }
 
 .poster {
@@ -62,5 +69,6 @@
     padding: 3px 14px 0px 14px;
     height: 30px;
     border: 1px solid white;
+    border-color: inherit;
     border-radius: 15px;
 }

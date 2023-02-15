@@ -8,13 +8,15 @@ import styles from './movie-details.module.scss';
 
 const MovieDetails = ({item}) => {
     const [bgColor, setBgColor] = useState("rgba(120, 145, 165, 1)");
+    const [isColorLight, setIsColorLight] = useState(false);
 
     useEffect(() => {
-        const {poster_path} = item;
         const fac = new FastAverageColor();
-        fac.getColorAsync(`https://image.tmdb.org/t/p/w300${poster_path}`)
+        fac.getColorAsync(`https://image.tmdb.org/t/p/w342${item.poster_path}`, {algorithm: 'simple'})
         .then(color => {
             setBgColor(color.rgba);
+            setIsColorLight(!color.isDark);
+            
         })
         .catch(e => {
             console.log(e);
@@ -43,7 +45,7 @@ const MovieDetails = ({item}) => {
     return (
         <div className={styles.fullweightContainer} style={containerStyle}>
             <Container>
-                <div className={styles.movieCard}>
+                <div className={isColorLight ? `${styles.movieCard} ${styles.darkThema}` : styles.movieCard}>
                     <div className={styles.poster}>
                         <img className={styles.image} src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={title} />
                     </div>
