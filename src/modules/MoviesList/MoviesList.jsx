@@ -24,7 +24,7 @@ const MoviesList = ({items}) => {
                                         <img className={styles.image} src={poster} alt="{title}" />
                                     </Link>
                                     <div className={styles.meta}>
-                                        <Rating vote={vote_average} />
+                                        <div className={styles.ratingWrapper}><Rating vote={vote_average} /></div>
                                         <Link state={{from: location}} to={`/goit-react-hw-05-movies/movies/${id}`} className={styles.title}>{title}</Link>
                                         {date && <p className={styles.release}>{date}</p>}
                                     </div>

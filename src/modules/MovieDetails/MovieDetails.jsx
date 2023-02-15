@@ -3,6 +3,7 @@ import {useState, useEffect} from 'react';
 import { FastAverageColor } from 'fast-average-color';
 
 import Container from '../../shared/components/Container';
+import Rating from '../../shared/components/Rating';
 import {getRatingPercentage} from '../../shared/utils/utils';
 import styles from './movie-details.module.scss';
 
@@ -31,30 +32,29 @@ const MovieDetails = ({item}) => {
     const gradColor1 = bgColor.slice(0, bgColor.length - 2) + " 0.9)";
     const gradColor2 = bgColor.slice(0, bgColor.length - 2) + " 0.7)";
 
+    const movieCardClassList = isColorLight ? `${styles.movieCard} ${styles.darkThema}` : styles.movieCard;
+
     const containerStyle = {
         backgroundColor: bgColor,
         backgroundImage: `linear-gradient(to right,
              ${gradColor1},
              ${gradColor2}),
             url(https://image.tmdb.org/t/p/w1280${backdrop_path})`,
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "center",
-            backgroundSize: "cover",
     }
       
     return (
         <div className={styles.fullweightContainer} style={containerStyle}>
             <Container>
-                <div className={isColorLight ? `${styles.movieCard} ${styles.darkThema}` : styles.movieCard}>
+                <div className={movieCardClassList}>
                     <div className={styles.poster}>
                         <img className={styles.image} src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={title} />
                     </div>
                     <div className={styles.meta}>
                         <h1 className={styles.title}>{title} <span className={styles.year}>({year})</span></h1>
-                        <p>User Score: {percentage}%</p>
+                        <div className={styles.ratingWrapper}><Rating vote={vote_average} /></div>
                         {tagline?.length > 0 && <p className={styles.tagline}>{tagline}</p>}
                         <h3 className={styles.subtitle}>Overview</h3>
-                        <p>{overview}</p>
+                        <p className={styles.overview}>{overview}</p>
                         <h3 className={styles.subtitle}>Genres</h3>
                         {genres && <ul className={styles.genreList}>
                                         {genreList}
