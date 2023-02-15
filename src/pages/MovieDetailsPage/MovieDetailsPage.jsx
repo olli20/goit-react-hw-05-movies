@@ -3,6 +3,8 @@ import {NavLink, Outlet, useParams, useNavigate, useLocation} from 'react-router
 
 import MovieDetails from '../../modules/MovieDetails';
 import Loading from '../../shared/components/Loading';
+import Error from '../../shared/components/Error';
+import Container from '../../shared/components/Container';
 
 import styles from './movie-details-page.module.scss';
 
@@ -14,7 +16,7 @@ const MovieDetailsPage = () => {
         loading: false,
         error: null,
     });
-
+    
     const {movieId} = useParams();
 
     const navigate = useNavigate();
@@ -54,32 +56,34 @@ const MovieDetailsPage = () => {
         fetchMovieDetails();
     }, [movieId, setState])
 
-    const goBack = () => navigate(from);
-
-    const {loading, error} = state;
-
-    const getClassList = ({isActive}) => {
+        const getClassList = ({isActive}) => {
         return isActive ? `${styles.link} ${styles.active}` : styles.link;
     }
 
+    const goBack = () => navigate(from);
+
+    const {item, loading, error} = state;
+    const isItem = item.hasOwnProperty("title");
+
     return (
         <div>
-            <button onClick={goBack}>Go back</button>
+            <Container><button onClick={goBack}>Go back</button></Container>
 
             {loading && <Loading />}
-            {error && <p>Error</p>}
+            {error && <Error>Some error occured</Error>}
 
-            <MovieDetails item={state.item} />
-            <hr />
-            <p>Additional information</p>
-            <ul className={styles.list}>
-                <li>
-                    <NavLink className={getClassList} state={{from}} to={`/goit-react-hw-05-movies/movies/${movieId}/cast`}>Cast</NavLink>
-                </li>
-                <li>
-                    <NavLink className={getClassList} state={{from}} to={`/goit-react-hw-05-movies/movies/${movieId}/reviews`}>Reviews</NavLink>
-                </li>
-            </ul>
+            {isItem && <MovieDetails item={state.item} />}
+            
+            {isItem && <Container>
+                <ul className={styles.list}>
+                    <li>
+                        <NavLink className={getClassList} state={{from}} to={`/goit-react-hw-05-movies/movies/${movieId}/cast`}>Cast</NavLink>
+                    </li>
+                    <li>
+                        <NavLink className={getClassList} state={{from}} to={`/goit-react-hw-05-movies/movies/${movieId}/reviews`}>Reviews</NavLink>
+                    </li>
+                </ul>
+            </Container>}
             <Outlet />
         </div>
     )

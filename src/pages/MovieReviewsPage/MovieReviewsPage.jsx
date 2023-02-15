@@ -3,9 +3,12 @@ import {useParams} from 'react-router-dom';
 
 import {getReviews} from '../../shared/api/api';
 
+import Container from '../../shared/components/Container';
+import Card from '../../shared/components/Card';
 import Loading from '../../shared/components/Loading';
+import Error from '../../shared/components/Error';
 
-// import styles from './movie-reviews-page.module.scss';
+import styles from './movie-reviews-page.module.scss';
 
 const MovieReviewsPage = () => {
     const [state, setState] = useState({
@@ -50,20 +53,23 @@ const MovieReviewsPage = () => {
     const {items, loading, error} = state;
 
     const elements = items.map((item) => {
-        return (<li key={item.id}>
-                    <p>Author: {item.author}</p>
-                    <p>{item.content}</p>  
+        const {id, author, content} = item;
+        return (<li className={styles.item} key={id}>
+                    <Card>
+                        <p className={styles.name}>Author: {author}</p>
+                        <p className={styles.content}>{content}</p>  
+                    </Card>
                 </li>)
         }
     );
 
     return (
-        <div>
+        <Container>
             {loading && <Loading />}
-            {error && <p>Error</p>}
-            {items.length > 0 && <ul>{elements}</ul>}
+            {error && <Error>Some error occured</Error>}
+            {items.length > 0 && <ul className={styles.list}>{elements}</ul>}
             {!loading && items.length === 0 && <p>We don't have any reviews for this movie.</p>}
-        </div>
+        </Container>
     )
 }
 

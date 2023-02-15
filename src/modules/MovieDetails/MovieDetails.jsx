@@ -1,28 +1,65 @@
 // import PropTypes from 'prop-types';
+import {useState, useEffect} from 'react';
+import { FastAverageColor } from 'fast-average-color';
 
+import Container from '../../shared/components/Container';
 import {getRatingPercentage} from '../../shared/utils/utils';
-
 import styles from './movie-details.module.scss';
 
 const MovieDetails = ({item}) => {
-    const {title, poster_path, vote_average, overview, genres = []} = item;
+    const [bgColor, setBgColor] = useState("rgba(120, 145, 165, 1)");
+
+    useEffect(() => {
+        const {poster_path} = item;
+        const fac = new FastAverageColor();
+        fac.getColorAsync(`https://image.tmdb.org/t/p/w300${poster_path}`)
+        .then(color => {
+            setBgColor(color.rgba);
+        })
+        .catch(e => {
+            console.log(e);
+        }); 
+    }, [item, setBgColor]) 
+
+    const {title, poster_path, backdrop_path, tagline, vote_average, overview, genres = [], release_date} = item;
+
     const genreList = genres.map(genre => <li key={genre.id} className={styles.genre}>{genre.name}</li>);
     const percentage = getRatingPercentage(vote_average);
+    const year = release_date.slice(0, 4);
+    const gradColor1 = bgColor.slice(0, bgColor.length - 2) + " 0.9)";
+    const gradColor2 = bgColor.slice(0, bgColor.length - 2) + " 0.7)";
+
+    const containerStyle = {
+        backgroundColor: bgColor,
+        backgroundImage: `linear-gradient(to right,
+             ${gradColor1},
+             ${gradColor2}),
+            url(https://image.tmdb.org/t/p/w1280${backdrop_path})`,
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+    }
+      
     return (
-        <div className={styles.wrapper}>
-            <div className={styles.poster}>
-                <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} width="300" alt={title} />
-            </div>
-            <div>
-                <h1 className="title">{title}</h1>
-                <p>User Score: {percentage}%</p>
-                <h3>Overview</h3>
-                <p>{overview}</p>
-                <h3>Genres</h3>
-                {genres && <ul className={styles.genreList}>
-                                {genreList}
-                            </ul>}
-            </div>
+        <div className={styles.fullweightContainer} style={containerStyle}>
+            <Container>
+                <div className={styles.movieCard}>
+                    <div className={styles.poster}>
+                        <img className={styles.image} src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={title} />
+                    </div>
+                    <div className={styles.meta}>
+                        <h1 className={styles.title}>{title} <span className={styles.year}>({year})</span></h1>
+                        <p>User Score: {percentage}%</p>
+                        {tagline?.length > 0 && <p className={styles.tagline}>{tagline}</p>}
+                        <h3 className={styles.subtitle}>Overview</h3>
+                        <p>{overview}</p>
+                        <h3 className={styles.subtitle}>Genres</h3>
+                        {genres && <ul className={styles.genreList}>
+                                        {genreList}
+                                    </ul>}
+                    </div>
+                </div>
+            </Container>
         </div>
     )
 }

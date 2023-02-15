@@ -4,6 +4,7 @@ import {useSearchParams} from 'react-router-dom';
 import MoviesSearchForm from '../../modules/MoviesSearchForm';
 import MoviesList from '../../modules/MoviesList';
 import Loading from '../../shared/components/Loading';
+import Error from '../../shared/components/Error';
 import ButtonCentered from '../../shared/components/ButtonCentered';
 
 import {searchMovies} from '../../shared/api/api';
@@ -73,8 +74,8 @@ const MoviesSearchPage = () => {
             <MoviesSearchForm onSubmit={onSubmit} />
             {isItems && <MoviesList items={items} />}
             {loading && <Loading />}
-            {error && <p>Some error occured</p>}
-            {isItems && <ButtonCentered onClick={handleShowMore}>Show more</ButtonCentered>}
+            {error && <Error>Some error occured</Error>}
+            {isItems && !loading && <ButtonCentered onClick={handleShowMore}>Show more</ButtonCentered>}
         </div>
     )   
 }

@@ -4,6 +4,7 @@ import {useParams} from 'react-router-dom';
 import {getCast} from '../../shared/api/api';
 
 import Loading from '../../shared/components/Loading';
+import Error from '../../shared/components/Error';
 import CastList from '../../modules/CastList';
 
 // import styles from './movie-cast-page.modle.scss';
@@ -53,7 +54,7 @@ const MovieCastPage = () => {
     return(
         <div>
             {loading && <Loading />}
-            {error && <p>Error</p>}
+            {error && <Error>Some error occured</Error>}
             {items.length > 0 && <CastList items={items} />}
         </div>
     )
