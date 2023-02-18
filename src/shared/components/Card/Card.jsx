@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import styles from './card.module.scss';
 
 const Card = ({children}) => {
@@ -9,3 +11,10 @@ const Card = ({children}) => {
 }
 
 export default Card;
+
+Card.propTypes = {
+    children: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.element]).isRequired,
+}
+

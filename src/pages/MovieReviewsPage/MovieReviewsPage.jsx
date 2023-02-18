@@ -28,27 +28,24 @@ const MovieReviewsPage = () => {
             }));
             try {
                 const data = await getReviews(movieId);
-                setState(prevState => {
-                    return {
-                        ...prevState,
-                        items: [...prevState.items, ...data]
-                    }
-                });
+                setState(prevState => ({
+                    ...prevState,
+                    items: [...prevState.items, ...data]
+                }));
             } catch (error) {
                 setState(prevState => ({
                     ...prevState,
                     error,
                 }));
             } finally {
-                setState(prevState => {
-                    return {
-                        ...prevState, 
-                        loading: false }
-                });
+                setState(prevState => ({
+                    ...prevState, 
+                    loading: false,
+                }));
             }
         }
         fetchReviews();
-    }, [movieId, setState]) 
+    }, [movieId, setState]); 
 
     const {items, loading, error} = state;
 
@@ -68,7 +65,7 @@ const MovieReviewsPage = () => {
             {loading && <Loading />}
             {error && <Error>Some error occured</Error>}
             {items.length > 0 && <ul className={styles.list}>{elements}</ul>}
-            {!loading && items.length === 0 && <p>We don't have any reviews for this movie.</p>}
+            {!loading && items.length === 0 && <Error>We don't have any reviews for this movie.</Error>}
         </Container>
     )
 }

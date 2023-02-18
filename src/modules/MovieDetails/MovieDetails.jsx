@@ -1,10 +1,12 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import {useState, useEffect} from 'react';
 import { FastAverageColor } from 'fast-average-color';
 
 import Container from '../../shared/components/Container';
 import Rating from '../../shared/components/Rating';
 import styles from './movie-details.module.scss';
+
+import defaultPoster from '../../shared/images/default-poster.png';
 
 const MovieDetails = ({item}) => {
     const [bgColor, setBgColor] = useState("rgba(120, 145, 165, 1)");
@@ -15,8 +17,7 @@ const MovieDetails = ({item}) => {
         fac.getColorAsync(`https://image.tmdb.org/t/p/w342${item.poster_path}`, {algorithm: 'simple'})
         .then(color => {
             setBgColor(color.rgba);
-            setIsColorLight(!color.isDark);
-            
+            setIsColorLight(!color.isDark);  
         })
         .catch(e => {
             console.log(e);
@@ -25,8 +26,9 @@ const MovieDetails = ({item}) => {
 
     const {title, poster_path, backdrop_path, tagline, vote_average, overview, genres = [], release_date} = item;
 
+    const poster = poster_path?.length > 0 ? `https://image.tmdb.org/t/p/w500${poster_path}` : defaultPoster;
+
     const genreList = genres.map(genre => <li key={genre.id} className={styles.genre}>{genre.name}</li>);
-    // const percentage = getRatingPercentage(vote_average);
     const year = release_date.slice(0, 4);
     const gradColor1 = bgColor.slice(0, bgColor.length - 2) + " 0.9)";
     const gradColor2 = bgColor.slice(0, bgColor.length - 2) + " 0.7)";
@@ -46,7 +48,7 @@ const MovieDetails = ({item}) => {
             <Container>
                 <div className={movieCardClassList}>
                     <div className={styles.poster}>
-                        <img className={styles.image} src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={title} />
+                        <img className={styles.image} src={poster} alt={title} />
                     </div>
                     <div className={styles.meta}>
                         <h1 className={styles.title}>{title} <span className={styles.year}>({year})</span></h1>
@@ -67,15 +69,20 @@ const MovieDetails = ({item}) => {
 
 export default MovieDetails;
 
-// MovieDetails.propTypes = {
-//     item: PropTypes.shape({
-//         title: PropTypes.string.isRequired,
-//         poster_path: PropTypes.string,
-//         vote_average: PropTypes.string.isRequired,
-//         overview: PropTypes.string.isRequired,
-//         genres: PropTypes.arrayOf(PropTypes.shape({
-//             name: PropTypes.string.isRequired,
-//             id: PropTypes.number.isRequired,
-//         })),
-//     })
-// }
+MovieDetails.propTypes = {
+    item: PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        poster_path: PropTypes.string,
+        vote_average: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number]).isRequired,
+        overview: PropTypes.string.isRequired,
+        tagline: PropTypes.string,
+        backdrop_path: PropTypes.string,
+        genres: PropTypes.arrayOf(PropTypes.shape({
+            name: PropTypes.string.isRequired,
+            id: PropTypes.number.isRequired,
+        })),
+        release_date: PropTypes.string.isRequired,
+    })
+}

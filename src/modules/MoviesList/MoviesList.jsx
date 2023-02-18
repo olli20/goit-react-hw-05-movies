@@ -39,12 +39,14 @@ const MoviesList = ({items}) => {
 export default MoviesList;
 
 MoviesList.defaultProps = {
-    items: []
+    items: [],
 }
 
 MoviesList.propTypes = {
     items: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.string.isRequired,
+        id: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number]).isRequired,
         title: PropTypes.string.isRequired,
     })).isRequired,
 }

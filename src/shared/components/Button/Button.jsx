@@ -16,5 +16,7 @@ export default Button;
 Button.propTypes = {
     onClick: PropTypes.func,
     type: PropTypes.oneOf(["button", "submit"]),
-    children: PropTypes.element,
+    children: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.element]).isRequired,
 }

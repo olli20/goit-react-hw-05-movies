@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import {PropTypes} from 'prop-types';
 
 import Button from '../../shared/components/Button';
 import ContainerFilled from '../../shared/components/ContainerFilled';
@@ -42,3 +43,7 @@ const MoviesSearchForm = ({onSubmit}) => {
 }
 
 export default MoviesSearchForm;
+
+MoviesSearchForm.propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+} 

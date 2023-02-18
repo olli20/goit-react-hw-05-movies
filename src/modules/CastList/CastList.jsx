@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Grid from '../../shared/components/Grid';
 
 import styles from './cast-list.module.scss';
-
 import defaultImage from '../../shared/images/default-avatar.png';
 
 const CastList = ({items}) => {
@@ -38,7 +37,9 @@ CastList.defaultProps = {
 
 CastList.propTypes = {
     items: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.string.isRequired,
+        id: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number]).isRequired,
         name: PropTypes.string.isRequired,
         character: PropTypes.string.isRequired,
         profile_path: PropTypes.string,

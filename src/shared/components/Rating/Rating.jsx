@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import styles from './rating.module.scss';
 
 import {getRatingPercentage, getProgressDiagramClasses} from '../../utils/utils';
@@ -45,3 +47,9 @@ const Rating = ({vote}) => {
 }
 
 export default Rating;
+
+Rating.propTypes = {
+    vote: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number]).isRequired,
+}

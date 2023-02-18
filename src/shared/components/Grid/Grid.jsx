@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import Container from '../Container';
 
 import styles from './grid.module.scss';
@@ -27,3 +29,10 @@ const Grid = ({type = "default", children}) => {
 }
 
 export default Grid;
+
+Grid.propTypes = {
+    children: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.element,
+        PropTypes.node]).isRequired,
+}

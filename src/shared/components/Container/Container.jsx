@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import styles from './container.module.scss';
 
 const Container = ({children}) => {
@@ -9,3 +11,10 @@ const Container = ({children}) => {
 }
 
 export default Container;
+
+Container.propTypes = {
+    children: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.element,
+        PropTypes.node]).isRequired,
+}

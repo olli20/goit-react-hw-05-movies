@@ -1,4 +1,5 @@
-// import Card from '../Card';
+import PropTypes from 'prop-types';
+
 import Container from '../Container';
 
 import styles from './error.module.scss';
@@ -14,3 +15,7 @@ const Error = ({children}) => {
 }
 
 export default Error;
+
+Error.propTypes = {
+    children: PropTypes.string.isRequired,
+}
