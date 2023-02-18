@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import {useState, useEffect} from 'react';
-import { FastAverageColor } from 'fast-average-color';
+import {useState, useEffect, memo} from 'react';
+import {FastAverageColor} from 'fast-average-color';
 
 import Container from '../../shared/components/Container';
 import Rating from '../../shared/components/Rating';
@@ -86,7 +86,7 @@ const MovieDetails = ({item}) => {
     )
 }
 
-export default MovieDetails;
+export default memo(MovieDetails);
 
 MovieDetails.propTypes = {
     item: PropTypes.shape({

@@ -1,3 +1,5 @@
+import {memo, useCallback} from 'react';
+
 import {PropTypes} from 'prop-types';
 
 import styles from './options-form.module.scss';
@@ -5,10 +7,10 @@ import styles from './options-form.module.scss';
 import Container from '../../shared/components/Container';
 
 const OptionsForm = ({onChange, option}) => {
-    const handleChange = ({target}) => {
+    const handleChange = useCallback(({target}) => {
         onChange(target);
-    }
-
+    }, [onChange]);
+    
     return (
         <Container>
             <div className={styles.container}>
@@ -38,7 +40,7 @@ const OptionsForm = ({onChange, option}) => {
     )
 }
 
-export default OptionsForm;
+export default memo(OptionsForm);
 
 OptionsForm.propTypes = {
     onChange: PropTypes.func.isRequired,

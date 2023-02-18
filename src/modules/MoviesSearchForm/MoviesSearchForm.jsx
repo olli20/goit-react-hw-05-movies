@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, memo} from 'react';
 import {PropTypes} from 'prop-types';
 
 import Button from '../../shared/components/Button';
@@ -42,7 +42,7 @@ const MoviesSearchForm = ({onSubmit}) => {
     )
 }
 
-export default MoviesSearchForm;
+export default memo(MoviesSearchForm);
 
 MoviesSearchForm.propTypes = {
     onSubmit: PropTypes.func.isRequired,

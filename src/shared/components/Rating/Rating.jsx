@@ -1,3 +1,5 @@
+import {memo} from 'react';
+
 import PropTypes from 'prop-types';
 
 import styles from './rating.module.scss';
@@ -10,9 +12,7 @@ const Rating = ({vote}) => {
     const radius = 9;
     const dashArray = radius * Math.PI * 2;
     const dashOffset = dashArray - (dashArray * percentage) / 100;
-
     // console.log(`percentage: ${percentage}, isRated: ${isRated}, dashArray: ${dashArray}, dashOffset: ${dashOffset}`);
-
     const progressDiagramClasses = getProgressDiagramClasses(percentage);
 
     return (
@@ -46,7 +46,7 @@ const Rating = ({vote}) => {
     )
 }
 
-export default Rating;
+export default memo(Rating);
 
 Rating.propTypes = {
     vote: PropTypes.oneOfType([

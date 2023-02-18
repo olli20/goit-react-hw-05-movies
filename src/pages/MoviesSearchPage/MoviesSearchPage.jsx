@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useCallback} from 'react';
 import {useSearchParams} from 'react-router-dom';
 
 import MoviesSearchForm from '../../modules/MoviesSearchForm';
@@ -59,12 +59,12 @@ const MoviesSearchPage = () => {
         }));
     }
 
-    const handleShowMore = () => {
+    const handleShowMore = useCallback(() => {
         setState(prevState =>({
             ...prevState,
             page: prevState.page + 1,
         }));
-    }
+    }, [])
 
     const {items, loading, error} = state;
     const isItems = items.length > 0;
