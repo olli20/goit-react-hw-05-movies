@@ -13,15 +13,30 @@ const MovieDetails = ({item}) => {
     const [isColorLight, setIsColorLight] = useState(false);
 
     useEffect(() => {
+        const {poster_path, backdrop_path} = item;
         const fac = new FastAverageColor();
-        fac.getColorAsync(`https://image.tmdb.org/t/p/w342${item.poster_path}`, {algorithm: 'simple'})
-        .then(color => {
-            setBgColor(color.rgba);
-            setIsColorLight(!color.isDark);  
-        })
-        .catch(e => {
-            console.log(e);
-        }); 
+        if (poster_path?.length > 0) {
+            fac.getColorAsync(`https://image.tmdb.org/t/p/w342${poster_path}`, {algorithm: 'simple'})
+            .then(color => {
+                setBgColor(color.rgba);
+                setIsColorLight(!color.isDark);  
+            })
+            .catch(e => {
+                console.log(e);
+            }); 
+        } else if (backdrop_path?.length > 0) {
+            fac.getColorAsync(`https://image.tmdb.org/t/p/w300${backdrop_path}`, {algorithm: 'simple'})
+            .then(color => {
+                setBgColor(color.rgba);
+                setIsColorLight(!color.isDark);  
+            })
+            .catch(e => {
+                console.log(e);
+            }); 
+        } else {
+            return;
+        }
+        
     }, [item, setBgColor]) 
 
     const {title, poster_path, backdrop_path, tagline, vote_average, overview, genres = [], release_date} = item;
@@ -30,6 +45,7 @@ const MovieDetails = ({item}) => {
 
     const genreList = genres.map(genre => <li key={genre.id} className={styles.genre}>{genre.name}</li>);
     const year = release_date.slice(0, 4);
+
     const gradColor1 = bgColor.slice(0, bgColor.length - 2) + " 0.9)";
     const gradColor2 = bgColor.slice(0, bgColor.length - 2) + " 0.7)";
 
@@ -51,7 +67,10 @@ const MovieDetails = ({item}) => {
                         <img className={styles.image} src={poster} alt={title} />
                     </div>
                     <div className={styles.meta}>
-                        <h1 className={styles.title}>{title} <span className={styles.year}>({year})</span></h1>
+                        <h1 className={styles.title}>
+                            {title} 
+                            {year && <span className={styles.year}> ({year})</span>}
+                        </h1>
                         <div className={styles.ratingWrapper}><Rating vote={vote_average} /></div>
                         {tagline?.length > 0 && <p className={styles.tagline}>{tagline}</p>}
                         <h3 className={styles.subtitle}>Overview</h3>

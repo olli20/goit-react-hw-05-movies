@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react';
 
 import OptionsForm from '../../modules/OptionsForm';
 import MoviesList from '../../modules/MoviesList';
+import Container from '../../shared/components/Container';
 import Loading from '../../shared/components/Loading';
 import Error from '../../shared/components/Error';
 import ButtonCentered from '../../shared/components/ButtonCentered';
@@ -67,13 +68,13 @@ const HomePage = () => {
     const isItems = items.length > 0;
 
     return(
-        <div>
+        <>
             <OptionsForm onChange={handleOptionChange} option={option} />
             {isItems && <MoviesList items={items} onChange={handleOptionChange} />}
             {loading && <Loading />}
-            {error && <Error>Some error occured</Error>}
+            {error && <Container><Error>Some error occured</Error></Container>}
             {isItems && !loading && <ButtonCentered onClick={handleShowMore}>Show more</ButtonCentered>}
-        </div>
+        </>
     )
 }
 

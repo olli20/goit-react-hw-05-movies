@@ -1,8 +1,11 @@
 .wrapper {
     min-width: 200px;
     display: block;
+    margin-top: 25px;
+    margin-bottom: 25px;
     border-radius: 7px;
     background-color: white;
+    border: 1px solid lightgray;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, .1);
     padding: 15px;

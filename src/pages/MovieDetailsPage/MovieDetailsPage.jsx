@@ -1,6 +1,8 @@
 import {useState, useEffect} from 'react';
 import {NavLink, Outlet, useParams, useNavigate, useLocation} from 'react-router-dom';
 
+import { IoIosArrowRoundBack } from "react-icons/io";
+
 import MovieDetails from '../../modules/MovieDetails';
 import Loading from '../../shared/components/Loading';
 import Error from '../../shared/components/Error';
@@ -32,12 +34,10 @@ const MovieDetailsPage = () => {
             }));
             try {
                 const data = await getMovieById(movieId);
-                setState(prevState => {
-                    return {
+                setState(prevState => ({
                         ...prevState,
                         item: data,
-                    }
-                });
+                }));
             }
             catch (error) {
                 setState(prevState => ({
@@ -46,17 +46,16 @@ const MovieDetailsPage = () => {
                 }));
             }
             finally {
-                setState(prevState => {
-                    return {
-                        ...prevState, 
-                        loading: false }
-                });
+                setState(prevState => ({
+                    ...prevState, 
+                    loading: false 
+                }));
             }
         }
         fetchMovieDetails();
     }, [movieId, setState])
 
-        const getClassList = ({isActive}) => {
+    const getSubMenuClassList = ({isActive}) => {
         return isActive ? `${styles.link} ${styles.active}` : styles.link;
     }
 
@@ -66,26 +65,28 @@ const MovieDetailsPage = () => {
     const isItem = item.hasOwnProperty("title");
 
     return (
-        <div>
-            <Container><button onClick={goBack}>Go back</button></Container>
+        <>
+            <Container><button className={styles.button} onClick={goBack}><IoIosArrowRoundBack />Go back</button></Container>
 
             {loading && <Loading />}
-            {error && <Error>Some error occured</Error>}
+            {error && <Container><Error>Some error occured</Error></Container>}
 
             {isItem && <MovieDetails item={state.item} />}
             
-            {isItem && <Container>
-                <ul className={styles.list}>
-                    <li>
-                        <NavLink className={getClassList} state={{from}} to={`/goit-react-hw-05-movies/movies/${movieId}/cast`}>Cast</NavLink>
-                    </li>
-                    <li>
-                        <NavLink className={getClassList} state={{from}} to={`/goit-react-hw-05-movies/movies/${movieId}/reviews`}>Reviews</NavLink>
-                    </li>
-                </ul>
-            </Container>}
+            {isItem && 
+                <Container>
+                    <ul className={styles.list}>
+                        <li>
+                            <NavLink className={getSubMenuClassList} state={{from}} to={`/goit-react-hw-05-movies/movies/${movieId}/cast`}>Cast</NavLink>
+                        </li>
+                        <li>
+                            <NavLink className={getSubMenuClassList} state={{from}} to={`/goit-react-hw-05-movies/movies/${movieId}/reviews`}>Reviews</NavLink>
+                        </li>
+                    </ul>
+                </Container>
+            }
             <Outlet />
-        </div>
+        </>
     )
 }
 
