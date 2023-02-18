@@ -5,6 +5,7 @@ import MoviesSearchForm from '../../modules/MoviesSearchForm';
 import MoviesList from '../../modules/MoviesList';
 import Loading from '../../shared/components/Loading';
 import Error from '../../shared/components/Error';
+import Container from '../../shared/components/Container';
 import ButtonCentered from '../../shared/components/ButtonCentered';
 
 import {searchMovies} from '../../shared/api/api';
@@ -74,7 +75,7 @@ const MoviesSearchPage = () => {
             <MoviesSearchForm onSubmit={onSubmit} />
             {isItems && <MoviesList items={items} />}
             {loading && <Loading />}
-            {error && <Error>Some error occured</Error>}
+            {error && <Container><Error>Some error occured</Error></Container>}
             {isItems && !loading && <ButtonCentered onClick={handleShowMore}>Show more</ButtonCentered>}
         </div>
     )   
