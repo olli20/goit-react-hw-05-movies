@@ -20,7 +20,7 @@ const UserRoutes = () => {
                     <Route path="cast" element={<MovieCastPage />} />
                     <Route path="reviews" element={<MovieReviewsPage />} />
                 </Route>
-                <Route path="/goit-react-hw-05-movies*" element={<NotFoundPage />} />
+                <Route path="/goit-react-hw-05-movies/*" element={<NotFoundPage />} />
             </Routes>
         </Suspense>
 
