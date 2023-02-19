@@ -49,7 +49,7 @@ const MoviesSearchPage = () => {
         if(search) {
             fetchMovies();
         }
-    }, [search, state.page, state.totalPages, setState])
+    }, [search, state.page, setState])
 
     const onSubmit = useCallback((search) => {
         setSearchParams({search});
