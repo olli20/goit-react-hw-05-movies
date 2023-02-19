@@ -9,7 +9,7 @@ const NotFoundPage = () => {
         <Container>
             <div className={styles.container}>
                 <h2>404</h2>
-                <NavLink to={`/goit-react-hw-05-movies/`}>Home page</NavLink>
+                <NavLink to={`/`}>Home page</NavLink>
             </div>
         </Container>
         

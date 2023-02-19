@@ -74,8 +74,8 @@ const MovieDetailsPage = () => {
             {isItem && 
                 <Container>
                     <ul className={styles.list}>
-                        <li><NavLink className={getSubMenuClassList} state={{from}} to={`/goit-react-hw-05-movies/movies/${movieId}/cast`}>Cast</NavLink></li>
-                        <li><NavLink className={getSubMenuClassList} state={{from}} to={`/goit-react-hw-05-movies/movies/${movieId}/reviews`}>Reviews</NavLink></li>
+                        <li><NavLink className={getSubMenuClassList} state={{from}} to={`/movies/${movieId}/cast`}>Cast</NavLink></li>
+                        <li><NavLink className={getSubMenuClassList} state={{from}} to={`/movies/${movieId}/reviews`}>Reviews</NavLink></li>
                     </ul>
                 </Container>
             }

@@ -19,7 +19,7 @@ const Navbar = () => {
     return (
         <div className={styles.navbar}>
             <nav className={styles.navbarContainer}>
-                <Link to={"/goit-react-hw-05-movies/"} className={styles.logo}>MOVIES</Link> 
+                <Link to={"/"} className={styles.logo}>MOVIES</Link> 
                 <ul className={styles.menu}>
                     {menuElements}
                 </ul>

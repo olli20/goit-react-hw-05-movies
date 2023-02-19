@@ -21,12 +21,12 @@ const MoviesList = ({items}) => {
 
                     return (<div className={styles.item} key={id}>
                                 <div className={styles.wrapper}>
-                                    <Link className={styles.poster} state={{from: location}} to={`/goit-react-hw-05-movies/movies/${id}`}>
+                                    <Link className={styles.poster} state={{from: location}} to={`/movies/${id}`}>
                                         <img className={styles.image} src={poster} alt="{title}" />
                                     </Link>
                                     <div className={styles.meta}>
                                         <div className={styles.ratingWrapper}><Rating vote={vote_average} /></div>
-                                        <Link state={{from: location}} to={`/goit-react-hw-05-movies/movies/${id}`} className={styles.title}>{title}</Link>
+                                        <Link state={{from: location}} to={`/movies/${id}`} className={styles.title}>{title}</Link>
                                         {date && <p className={styles.release}>{date}</p>}
                                     </div>
                                 </div>
