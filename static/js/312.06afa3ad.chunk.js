@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkreact_homework_template=self.webpackChunkreact_homework_template||[]).push([[312],{6312:function(e,t,n){n.r(t),n.d(t,{default:function(){return s}});var r=n(1087),c=n(5697),a="not-found-page_container__SO+JO",o=n(184),s=function(){return(0,o.jsx)(c.Z,{children:(0,o.jsxs)("div",{className:a,children:[(0,o.jsx)("h2",{children:"404"}),(0,o.jsx)(r.OL,{to:"/goit-react-hw-05-movies/",children:"Home page"})]})})}}}]);
-//# sourceMappingURL=312.06afa3ad.chunk.js.map
