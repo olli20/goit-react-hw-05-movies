@@ -23,7 +23,7 @@ const MovieDetailsPage = () => {
 
     const navigate = useNavigate();
     const location = useLocation();
-    const from = location.state?.from || "/goit-react-hw-05-movies";
+    const from = location.state?.from || "/";
 
     useEffect(() => {
         const fetchMovieDetails = async() => {
