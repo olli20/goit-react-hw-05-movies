@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkreact_homework_template=self.webpackChunkreact_homework_template||[]).push([[794],{1794:function(e,t,r){r.r(t);var c=r(1087),a=r(5697),h=r(184);t.default=function(){return(0,h.jsxs)(a.Z,{children:[(0,h.jsx)("h2",{children:"404"}),(0,h.jsx)(c.OL,{to:"/goit-react-hw-05-movies/",children:"Home page"})]})}}}]);
+//# sourceMappingURL=794.3577719f.chunk.js.map
