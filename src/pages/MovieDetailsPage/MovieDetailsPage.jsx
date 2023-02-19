@@ -68,7 +68,7 @@ const MovieDetailsPage = () => {
         <>
             <Container><button className={styles.button} onClick={goBack}><IoIosArrowRoundBack />Go back</button></Container>
             {loading && <Loading />}
-            {error && <Container><Error>Some error occured</Error></Container>}
+            {error && <Container><Error>Some error occurred</Error></Container>}
             {isItem && <MovieDetails item={state.item} />}
             {/* Cast and Review */}
             {isItem && 

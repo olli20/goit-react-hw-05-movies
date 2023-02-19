@@ -54,7 +54,7 @@ const MovieCastPage = () => {
     return(
         <div>
             {loading && <Loading />}
-            {error && <Error>Some error occured</Error>}
+            {error && <Error>Some error occurred</Error>}
             {items.length > 0 && <CastList items={items} />}
         </div>
     )

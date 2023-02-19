@@ -72,7 +72,7 @@ const HomePage = () => {
             <OptionsForm onChange={handleOptionChange} option={option} />
             {isItems && <MoviesList items={items} onChange={handleOptionChange} />}
             {loading && <Loading />}
-            {error && <Container><Error>Some error occured</Error></Container>}
+            {error && <Container><Error>Some error occurred</Error></Container>}
             {isItems && !loading && <ButtonCentered onClick={handleShowMore}>Show more</ButtonCentered>}
         </>
     )
