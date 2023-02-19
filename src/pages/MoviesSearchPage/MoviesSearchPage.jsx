@@ -15,9 +15,11 @@ const MoviesSearchPage = () => {
     const [state, setState] = useState({
         items: [],
         page: 1,
+        totalPages: 0,
         loading: false,
         error: null,
     });
+
     const [searchParams, setSearchParams] = useSearchParams();
     const search = searchParams.get("search");
 
@@ -29,10 +31,18 @@ const MoviesSearchPage = () => {
                     loading: true,
                 }));
                 const data = await searchMovies(search, state.page);
-                setState(prevState =>({
-                    ...prevState,
-                    items: [...prevState.items, ...data],
-                }));
+                if (state.totalPages > 0) {
+                    setState(prevState =>({
+                        ...prevState,
+                        items: [...prevState.items, ...data.results],
+                    }));
+                } else {
+                    setState(prevState =>({
+                        ...prevState,
+                        totalPages: data.total_pages,
+                        items: [...prevState.items, ...data.results],
+                    }));
+                }
             } catch (error) {
                 setState(prevState =>({
                     ...prevState,
@@ -48,27 +58,30 @@ const MoviesSearchPage = () => {
         if(search) {
             fetchMovies();
         }
-    }, [search, state.page, setState])
+    }, [search, state.page, state.totalPages, setState])
 
-    const onSubmit = search => {
+    const onSubmit = useCallback((search) => {
         setSearchParams({search});
         setState(prevState =>({
             ...prevState,
             items: [],
             page: 1,
+            totalPages: 0,
             error: null,
         }));
-    }
+    }, [setSearchParams]);
 
     const handleShowMore = useCallback(() => {
         setState(prevState =>({
             ...prevState,
             page: prevState.page + 1,
+            totalPages: prevState.totalPages - 1,
         }));
     }, [])
 
-    const {items, loading, error} = state;
+    const {items, loading, error, totalPages} = state;
     const isItems = items.length > 0;
+    const isPages = totalPages > 1;
 
     return(
         <div>
@@ -76,7 +89,7 @@ const MoviesSearchPage = () => {
             {isItems && <MoviesList items={items} />}
             {loading && <Loading />}
             {error && <Container><Error>Some error occured</Error></Container>}
-            {isItems && !loading && <ButtonCentered onClick={handleShowMore}>Show more</ButtonCentered>}
+            {isPages && !loading && <ButtonCentered onClick={handleShowMore}>Show more</ButtonCentered>}
         </div>
     )   
 }
