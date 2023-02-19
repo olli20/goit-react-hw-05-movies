@@ -23,7 +23,6 @@ const UserRoutes = () => {
                 <Route path="/goit-react-hw-05-movies/*" element={<NotFoundPage />} />
             </Routes>
         </Suspense>
-
     )
 }
 
