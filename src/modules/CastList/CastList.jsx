@@ -22,6 +22,7 @@ const CastList = ({items}) => {
             </div>
         )
     })
+    console.log("CastList rendered");
     return (
         <Grid type="actors">
             {elements}

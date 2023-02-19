@@ -51,7 +51,7 @@ const MovieDetails = ({item}) => {
 
     const movieCardClassList = isColorLight ? `${styles.movieCard} ${styles.darkThema}` : styles.movieCard;
 
-    const containerStyle = {
+    const movieContainerStyle = {
         backgroundColor: bgColor,
         backgroundImage: `linear-gradient(to right,
              ${gradColor1},
@@ -60,7 +60,7 @@ const MovieDetails = ({item}) => {
     }
       
     return (
-        <div className={styles.fullweightContainer} style={containerStyle}>
+        <div className={styles.fullweightContainer} style={movieContainerStyle}>
             <Container>
                 <div className={movieCardClassList}>
                     <div className={styles.poster}>

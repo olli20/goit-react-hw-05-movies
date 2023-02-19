@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useCallback} from 'react';
 import {NavLink, Outlet, useParams, useNavigate, useLocation} from 'react-router-dom';
 
 import { IoIosArrowRoundBack } from "react-icons/io";
@@ -59,7 +59,7 @@ const MovieDetailsPage = () => {
         return isActive ? `${styles.link} ${styles.active}` : styles.link;
     }
 
-    const goBack = () => navigate(from);
+    const goBack = useCallback(() => navigate(from), [from, navigate]);
 
     const {item, loading, error} = state;
     const isItem = item.hasOwnProperty("title");
@@ -67,21 +67,15 @@ const MovieDetailsPage = () => {
     return (
         <>
             <Container><button className={styles.button} onClick={goBack}><IoIosArrowRoundBack />Go back</button></Container>
-
             {loading && <Loading />}
             {error && <Container><Error>Some error occured</Error></Container>}
-
             {isItem && <MovieDetails item={state.item} />}
-            
+            {/* Cast and Review */}
             {isItem && 
                 <Container>
                     <ul className={styles.list}>
-                        <li>
-                            <NavLink className={getSubMenuClassList} state={{from}} to={`/goit-react-hw-05-movies/movies/${movieId}/cast`}>Cast</NavLink>
-                        </li>
-                        <li>
-                            <NavLink className={getSubMenuClassList} state={{from}} to={`/goit-react-hw-05-movies/movies/${movieId}/reviews`}>Reviews</NavLink>
-                        </li>
+                        <li><NavLink className={getSubMenuClassList} state={{from}} to={`/goit-react-hw-05-movies/movies/${movieId}/cast`}>Cast</NavLink></li>
+                        <li><NavLink className={getSubMenuClassList} state={{from}} to={`/goit-react-hw-05-movies/movies/${movieId}/reviews`}>Reviews</NavLink></li>
                     </ul>
                 </Container>
             }
