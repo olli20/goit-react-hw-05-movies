@@ -71,7 +71,7 @@ const MoviesSearchPage = () => {
     const {items, loading, error} = state;
     const isItems = items.length > 0;
 
-    return(
+    return (
         <div>
             <MoviesSearchForm onSubmit={onSubmit} />
             {isItems && <MoviesList items={items} />}
