@@ -19,7 +19,7 @@ const Navbar = () => {
     return (
         <div className={styles.navbar}>
             <nav className={styles.navbarContainer}>
-                <Link to={"/"} className={styles.logo}>MOVIES</Link> 
+                <Link to={"/"} className={styles.logo}>Movie Search</Link> 
                 <ul className={styles.menu}>
                     {menuElements}
                 </ul>

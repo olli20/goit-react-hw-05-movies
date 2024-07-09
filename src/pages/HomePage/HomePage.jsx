@@ -9,8 +9,6 @@ import ButtonCentered from '../../shared/components/ButtonCentered';
 
 import {getTrendingMovies} from '../../shared/api/api';
 
-// import styles from './home-page.module.scss';
-
 const HomePage = () => {
     const [state, setState] = useState({
         items: [],

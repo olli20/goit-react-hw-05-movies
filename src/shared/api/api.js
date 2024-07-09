@@ -13,7 +13,6 @@ export const getTrendingMovies = async (period = 'day', page = 1) => {
       page,
     },
   });
-  console.log(data.results);
   return data.results;
 };
 

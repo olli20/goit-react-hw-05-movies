@@ -14,8 +14,8 @@ const OptionsForm = ({onChange, option}) => {
     return (
         <Container>
             <div className={styles.container}>
-                <h1 className="title">Trending Movies</h1>
-                <form>
+                <h1 className={styles.title}>Trending movies</h1>
+                <form className={styles.formContainer}>
                     <label className={styles.option}>
                         <input 
                             type="radio" 
@@ -23,7 +23,8 @@ const OptionsForm = ({onChange, option}) => {
                             value="day" 
                             onChange={handleChange}
                             checked={option === "day"}
-                        /> Today
+                            className={styles.optionItem}
+                        /> <span>Today</span>
                     </label>
                     <label className={styles.option}>
                         <input 
@@ -32,7 +33,8 @@ const OptionsForm = ({onChange, option}) => {
                             value="week" 
                             onChange={handleChange}
                             checked={option === "week"}
-                        /> This week
+                            className={styles.optionItem}
+                        /> <span>This week</span>
                     </label>
                 </form>
             </div>
