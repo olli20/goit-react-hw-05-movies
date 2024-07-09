@@ -23,13 +23,13 @@ const MoviesSearchForm = ({onSubmit}) => {
         <ContainerFilled>
             <div className={styles.formBlock}>
                 <h1 className={styles.title}>Explore.</h1>
-                <p className={styles.description}>Find a movie to watch using the keyword</p>
+                <p className={styles.description}>Find a movie to watch using keywords</p>
                 <form className={styles.form} onSubmit={handleSubmit}>
                     <input 
                         name="query"
                         value={state}
                         onChange={handleChange}
-                        placeholder="Search for a movie..."
+                        placeholder="Find a movie..."
                         required
                         className={styles.input}
                     />
